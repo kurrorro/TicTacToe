@@ -1,0 +1,47 @@
+body {
+  font-family: sans-serif;
+  text-align: center;
+  padding: 1rem;
+  margin: 0;
+  background-color: #f4f4f4;
+}
+
+main {
+  max-width: 600px;
+  margin: auto;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, 100px);
+  gap: 10px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.cell {
+  width: 100px;
+  height: 100px;
+  background: white;
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #ccc;
+  cursor: pointer;
+}
+
+.scoreboard {
+  margin-top: 1rem;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-around;
+}
+
+dialog {
+  padding: 1.5rem;
+  border: none;
+  border-radius: 8px;
+  background: white;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}

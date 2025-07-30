@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tic Tac Toe Game</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main>
+    <header>
+      <h1>Tic Tac Toe</h1>
+      <p id="playerNames"></p>
+    </header>
+
+    <section class="scoreboard">
+      <span id="scoreX">X: 0</span>
+      <span id="scoreO">O: 0</span>
+    </section>
+
+    <section class="board" id="board">
+      <!-- 9 cells (di JS) -->
+    </section>
+  </main>
+
+  <!-- game over -->
+  <dialog id="gameOverDialog">
+    <h2 id="resultText">Game Over</h2>
+    <button id="continueBtn">Play Again</button>
+    <button id="exitBtn">Exit</button>
+  </dialog>
+
+  <!-- final result / winner -->
+  <dialog id="finalResultDialog">
+    <h2 id="finalText"></h2>
+    <button onclick="window.location.href='index.html'">Back to Home</button>
+  </dialog>
+
+  <script src="game.js"></script>
+</body>
+</html>

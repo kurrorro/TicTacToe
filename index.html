@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tic Tac Toe - Start</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main>
+    <header>
+      <h1>Tic Tac Toe</h1>
+      <p>Play the classic game between two players!</p>
+    </header>
+    <section>
+      <button id="startBtn">Start Game</button>
+    </section>
+  </main>
+
+  <!-- Modal Nama Pemain -->
+  <dialog id="nameModal">
+    <form id="nameForm" method="dialog">
+      <h2>Enter Player Name</h2>
+      <input type="text" name="player1" placeholder="Player X's Name" required />
+      <input type="text" name="player2" placeholder="Player O's Name" required />
+      <button type="submit">Start!</button>
+    </form>
+  </dialog>
+
+  <script>
+    const startBtn = document.getElementById('startBtn');
+    const modal = document.getElementById('nameModal');
+    const form = document.getElementById('nameForm');
+
+    startBtn.onclick = () => modal.showModal();
+
+    form.onsubmit = (e) => {
+      e.preventDefault();
+      const player1 = form.player1.value.trim();
+      const player2 = form.player2.value.trim();
+      if (player1 && player2) {
+        window.location.href = `game.html?player1=${encodeURIComponent(player1)}&player2=${encodeURIComponent(player2)}`;
+      }
+    };
+  </script>
+</body>
+</html>
