@@ -53,11 +53,10 @@ function handleClick(i) {
   } else if (!cells.includes(null)) {
     showGameOverDialog("It's a draw!");
   } else {
-    turn = turn === 'X' ? 'O' : 'X';     // ✅ ubah turn dulu
-    updateTurnHighlight();               // ✅ lalu update highlight
+    turn = turn === 'X' ? 'O' : 'X';  
+    updateTurnHighlight();              
   }
 }
-
 
 function checkWinner() {
   const winPatterns = [

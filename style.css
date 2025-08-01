@@ -1,3 +1,9 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 body {
   color: #dcc9a9;
   font-family: sans-serif;
@@ -17,7 +23,7 @@ main {
 }
 
 footer {
-  margin-top: 1rem; /* atau lebih besar jika perlu */
+  margin-top: 1rem;
   text-align: center;
 }
 
@@ -37,6 +43,12 @@ footer {
   background-color: #dcc9a9;
 }
 
+#nameModal {
+  width: 200vw;
+  max-width: 300px;
+  margin: auto;
+}
+
 #nameModal form {
   background-color: #dcc9a9;
   padding: 2rem;
@@ -45,6 +57,7 @@ footer {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  box-sizing: border-box;
 }
 
 #nameForm input[type="text"] {
@@ -156,6 +169,10 @@ dialog {
   text-align: center;
 }
 
+dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
 #gameOverDialog h2 {
   font-size: 1.5rem;
   margin-bottom: 1rem;
@@ -196,4 +213,42 @@ dialog {
 
 #finalResultDialog button:hover {
   background: #dcc9a9;
+}
+
+@media (max-width: 600px) {
+  body {
+    font-size: 14px;
+  }
+
+  h1 {
+    font-size: 1.8rem;
+  }
+
+  #startBtn, 
+  #resetBtn, 
+  #nameForm button,
+  #gameOverDialog button,
+  #finalResultDialog button {
+    font-size: 0.9rem;
+    padding: 0.6rem 1rem;
+  }
+
+  #nameForm input[type="text"] {
+    font-size: 0.9rem;
+  }
+
+  #nameModal {
+    padding: 1rem;
+  }
+
+  .board {
+    grid-template-columns: repeat(3, 80px);
+    gap: 8px;
+  }
+
+  .cell {
+    width: 80px;
+    height: 80px;
+    font-size: 1.5rem;
+  }
 }
