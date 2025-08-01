@@ -1,5 +1,6 @@
 # TicTacToe
-A simple web-based Tic Tac Toe game built using HTML, CSS, and JavaScript. Designed for two players to take turns playing.
+A simple web-based Tic Tac Toe game built using HTML, CSS, and JavaScript. 
+Designed for two players to take turns playing.
 
 Features:
 - Landing page with title and short description
