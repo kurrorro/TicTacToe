@@ -2,7 +2,10 @@ const params = new URLSearchParams(window.location.search);
 const player1 = params.get('player1') || 'Player X';
 const player2 = params.get('player2') || 'Player O';
 
-document.getElementById('playerNames').textContent = `${player1} (X) vs ${player2} (O)`;
+document.getElementById('playerNames').innerHTML = `
+  <span id="nameX">${player1} (X)</span> vs
+  <span id="nameO">${player2} (O)</span>
+`;
 
 const board = document.getElementById('board');
 const gameOverDialog = document.getElementById('gameOverDialog');
@@ -19,12 +22,17 @@ let score = {
   O: parseInt(localStorage.getItem('scoreO')) || 0,
 };
 
-function renderBoard() {
+function renderBoard(highlight = []) {
+  updateTurnHighlight();
   board.innerHTML = '';
   cells.forEach((value, i) => {
     const cell = document.createElement('div');
     cell.className = 'cell';
+    if (highlight.includes(i)) {
+      cell.classList.add('win');
+    }
     cell.textContent = value || '';
+    cell.tabIndex = 0;
     cell.onclick = () => handleClick(i);
     board.appendChild(cell);
   });
@@ -32,23 +40,24 @@ function renderBoard() {
 }
 
 function handleClick(i) {
-  if (cells[i] || gameOverDialog.open) return;
+  if (cells[i] || checkWinner()) return;
   cells[i] = turn;
-  renderBoard();
 
-  const winner = checkWinner();
-  if (winner) {
-    score[winner]++;
-    localStorage.setItem(`score${winner}`, score[winner]);
-    resultText.textContent = `${winner} wins this round!`;
-    gameOverDialog.showModal();
-  } else if (cells.every(cell => cell)) {
-    resultText.textContent = 'Draw!';
-    gameOverDialog.showModal();
+  const result = checkWinner();
+  renderBoard(result?.winningIndices || []);
+
+  if (result) {
+    const winner = result.winner === 'X' ? player1 : player2;
+    score[result.winner]++;
+    showGameOverDialog(`${winner} wins this round!`);
+  } else if (!cells.includes(null)) {
+    showGameOverDialog("It's a draw!");
   } else {
-    turn = turn === 'X' ? 'O' : 'X';
+    turn = turn === 'X' ? 'O' : 'X';     // ✅ ubah turn dulu
+    updateTurnHighlight();               // ✅ lalu update highlight
   }
 }
+
 
 function checkWinner() {
   const winPatterns = [
@@ -58,11 +67,17 @@ function checkWinner() {
   ];
   for (let [a,b,c] of winPatterns) {
     if (cells[a] && cells[a] === cells[b] && cells[b] === cells[c]) {
-      return cells[a];
+      return { winner: cells[a], winningIndices: [a, b, c] };
     }
   }
   return null;
 }
+
+resetBtn.onclick = () => {
+  cells = Array(9).fill(null);
+  turn = 'X';
+  renderBoard();
+};
 
 continueBtn.onclick = () => {
   cells = Array(9).fill(null);
@@ -75,7 +90,7 @@ exitBtn.onclick = () => {
   const winner =
     score.X > score.O ? `${player1} wins!` :
     score.O > score.X ? `${player2} wins!` : 'Draw!';
-  finalText.textContent = `${winner} (Skor: X=${score.X}, O=${score.O})`;
+  finalText.textContent = `${winner} (Score: X=${score.X}, O=${score.O})`;
   finalResultDialog.showModal();
   localStorage.clear();
 };
@@ -83,6 +98,30 @@ exitBtn.onclick = () => {
 function updateScore() {
   document.getElementById('scoreX').textContent = `X: ${score.X}`;
   document.getElementById('scoreO').textContent = `O: ${score.O}`;
+}
+
+function updateTurnHighlight() {
+  const nameX = document.getElementById("nameX");
+  const nameO = document.getElementById("nameO");
+
+  nameX.classList.toggle("active", turn === "X");
+  nameO.classList.toggle("active", turn === "O");
+
+  console.log("Highlighting:", turn);
+  console.log("X active?", nameX.classList.contains("active"));
+  console.log("O active?", nameO.classList.contains("active"));
+}
+
+function highlightWinningCells(indices) {
+  const cellElements = document.querySelectorAll('.cell');
+  indices.forEach(i => {
+    cellElements[i].classList.add('win');
+  });
+}
+
+function showGameOverDialog(message) {
+  resultText.textContent = message;
+  gameOverDialog.showModal(); // ini yang menampilkan dialog-nya
 }
 
 renderBoard();

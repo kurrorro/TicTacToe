@@ -1,14 +1,85 @@
 body {
+  color: #dcc9a9;
   font-family: sans-serif;
   text-align: center;
   padding: 1rem;
   margin: 0;
-  background-color: #f4f4f4;
+  background-color: #121312;
+}
+
+body h1 {
+  color: #4e6851;
 }
 
 main {
   max-width: 600px;
   margin: auto;
+}
+
+footer {
+  margin-top: 1rem; /* atau lebih besar jika perlu */
+  text-align: center;
+}
+
+#startBtn {
+  background-color: #ad0013;
+  color: #121312;
+  border: none;
+  padding: 5px 15px;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#startBtn:hover {
+  background-color: #dcc9a9;
+}
+
+#nameModal form {
+  background-color: #dcc9a9;
+  padding: 2rem;
+  border-radius: 12px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+#nameForm input[type="text"] {
+  padding: 0.5rem 0.5rem;
+  border: 1px solid #121312;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  transition: border-color 0.3s, background-color 0.3s;
+}
+
+#nameForm input[type="text"]:focus {
+  border-color: #ad0013;
+  background-color: #fff7e6;
+  outline: none;
+}
+
+#nameForm button {
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #121312;
+  background-color: #ad0013;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s ease-in-out;
+}
+
+#nameForm button:hover {
+  background-color: #4e6851;
+}
+
+#nameForm button:active {
+  background-color: #4e6851;
+  transform: scale(0.97);
 }
 
 .board {
@@ -22,13 +93,25 @@ main {
 .cell {
   width: 100px;
   height: 100px;
-  background: white;
+  background: #e8d0a7;
   font-size: 2rem;
+  font-weight: bold;
+  color: #121312;
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 2px solid #ccc;
   cursor: pointer;
+}
+
+.cell:hover {
+  outline: none;
+  background-color: #ad0013;
+  transition: background-color 0.3s ease;
+}
+
+.cell.win {
+  background-color: #ad0013;
+  transition: background-color 0.3s ease;
 }
 
 .scoreboard {
@@ -38,10 +121,79 @@ main {
   justify-content: space-around;
 }
 
+#playerNames span {
+  transition: background-color 0.3s ease;
+}
+
+#playerNames .active {
+  background-color: #ad0013;
+  font-weight: bold;
+}
+
+#resetBtn {
+  background-color: #ad0013;
+  color: #121312;
+  border: none;
+  padding: 5px 15px;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#resetBtn:hover {
+  background-color: #dcc9a9;
+}
+
 dialog {
   padding: 1.5rem;
   border: none;
   border-radius: 8px;
-  background: white;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  background: #121312;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  color: #121312;
+  text-align: center;
+}
+
+#gameOverDialog h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: #dcc9a9;
+}
+
+#gameOverDialog button {
+  margin: 0.5rem;
+  padding: 0.5rem 0.5rem;
+  background: #ad0013;
+  color: #121312;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+#gameOverDialog button:hover {
+  background: #dcc9a9;
+}
+
+#finalResultDialog h2 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  color: #ad0013;
+}
+
+#finalResultDialog button {
+  margin: 0.5rem;
+  padding: 0.5rem 0.5rem;
+  background: #ad0013;
+  color: #121312;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+#finalResultDialog button:hover {
+  background: #dcc9a9;
 }

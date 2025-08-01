@@ -10,7 +10,10 @@
   <main>
     <header>
       <h1>Tic Tac Toe</h1>
-      <p id="playerNames"></p>
+      <p id="playerNames">
+        <span id="nameX">Player X (X)</span> VS
+        <span id="nameO">Player O (O)</span>
+      </p>
     </header>
 
     <section class="scoreboard">
@@ -22,6 +25,10 @@
       <!-- 9 cells (di JS) -->
     </section>
   </main>
+
+  <footer>
+    <button id="resetBtn">Reset</button>
+  </footer>
 
   <!-- game over -->
   <dialog id="gameOverDialog">
